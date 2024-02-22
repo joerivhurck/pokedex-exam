@@ -11,7 +11,7 @@ const selectedPokemon = ref(null)
 
 const pokemonOptions = pokemons.value.map((pokemon) => ({ name: pokemon.name }))
 
-//check list doesn't load in unless you click back
+//check list doesn't load in unless you click back async probably
 
 const navigateToPokemonDetails = () => {
   router.push({
