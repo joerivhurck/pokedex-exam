@@ -11,6 +11,8 @@ const selectedPokemon = ref(null)
 
 const pokemonOptions = pokemons.value.map((pokemon) => ({ name: pokemon.name }))
 
+//check list doesn't load in unless you click back
+
 const navigateToPokemonDetails = () => {
   router.push({
     name: 'pokemonDetails',
@@ -21,7 +23,7 @@ const navigateToPokemonDetails = () => {
 
 <template>
   <div class="card flex justify-start mt-6 ml-6">
-    <Listbox 
+    <Listbox
       v-model="selectedPokemon"
       :options="pokemonOptions"
       option-label="name"
