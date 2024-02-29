@@ -1,14 +1,20 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import { RouterView , useRouter} from 'vue-router'
 import Toolbar from 'primevue/toolbar'
 import Button from 'primevue/button'
+
+const router = useRouter()
+
+const navigateHome = ()=>{
+  router.push('/')
+}
 </script>
 
 <template>
   <Toolbar>
     <template #start><div class="text-2xl">Pokédex</div></template>
     <template #end>
-      <Button label="Home" />
+      <Button @click="navigateHome" label="Home" />
     </template>
   </Toolbar>
 
