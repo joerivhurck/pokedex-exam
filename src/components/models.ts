@@ -29,7 +29,7 @@ interface Type {
   type: Detail;
 }
 
-interface Sprites {
+export interface Sprites {
   back_default: string;
   front_default: string;
   versions: Versions;

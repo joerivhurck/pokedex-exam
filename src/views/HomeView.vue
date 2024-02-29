@@ -6,17 +6,17 @@ import { onMounted, ref, type Ref } from 'vue'
 
 import type { PokemonInfo } from '@/components/models'
 
-const { getAllpokemonByNames } = usePokemon()
+const { getAllpokemon } = usePokemon()
 const router = useRouter()
 
 const selectedPokemon = ref(null)
 const pokemons: Ref<Array<PokemonInfo>> = ref([])
 
-onMounted(() => {
-  getAllpokemonByNames()
+onMounted(async() => {
+   await getAllpokemon()
     .then((apiResponse) => {
-      pokemons.value = apiResponse.map((pokemon) => ({ name: pokemon.name, url: pokemon.url }))
-      console.log(pokemons)
+      pokemons.value = apiResponse
+      
     })
     .catch((error) => {
       console.error('Error fetching Pokemon names:', error)
