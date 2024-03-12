@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { useFavorites } from '@/services/favorite.service'
-import { onMounted } from 'vue'
+import { onMounted} from 'vue'
 
-const { addFavorites, favorites } = useFavorites()
+const { getFavorites, favorites } = useFavorites()
 
 onMounted(() => {
-    addFavorites()
+  getFavorites()
 })
 </script>
 
 <template>
-  <div v-for="favorite in favorites" :key="favorite">{{ favorite }}</div>
+  <div class="m-2" v-for="favorite in favorites" :key="favorite">{{ favorite }}</div>
 </template>

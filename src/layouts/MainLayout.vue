@@ -5,9 +5,6 @@ import Button from 'primevue/button'
 
 const router = useRouter()
 
-defineProps<{
-  Btn: String
-}>()
 
 const navigateHome = () => {
   router.push('/')

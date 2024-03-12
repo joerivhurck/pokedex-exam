@@ -8,7 +8,7 @@ import { ref, onMounted } from 'vue'
 import Button from 'primevue/button'
 import 'primeicons/primeicons.css'
 import { useFavorites } from '@/services/favorite.service'
-const { addFavorites } = useFavorites()
+const { addFavorites, deleteFavorites } = useFavorites()
 
 const { getPokemonByName } = usePokemon()
 
@@ -17,7 +17,7 @@ const route = useRoute()
 const pokemonId = ref<number>()
 const pokemonHeight = ref<number>()
 const pokemonWeight = ref<number>()
-const pokemonName = ref<string>()
+const pokemonName = ref<string>('')
 const pokemonSprite = ref<string>()
 const pokemonType = ref<Array<Type>>([])
 const typeNameSlot1 = ref<string>()
@@ -64,7 +64,7 @@ onMounted(async () => {
             label="Toevoegen"
             icon="pi pi-heart-fill"
             iconPos="right"
-            @click="addFavorites"
+            @click="addFavorites(pokemonName)"
           />
         </div>
       </template>
