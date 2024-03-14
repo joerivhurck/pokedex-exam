@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 
 const favorites = ref()
+const isFavorite = ref<boolean>()
 
 const useFavorites = () => {
   const addFavorites = (name: string) => {
@@ -27,12 +28,45 @@ const useFavorites = () => {
     favorites.value = loadFavorites()
   }
 
- /* const deleteFavorites = (pokemon: string) => {
+  const deleteFavorites = (pokemon: string) => {
     favorites.value = favorites.value.filter((p: string) => p !== pokemon)
     saveFavorites(favorites.value)
-  }*/
-  
-  return { addFavorites, loadFavorites, getFavorites, favorites }
+  }
+
+  const toggleFavorite = (name: string) => {
+    if (!favorites.value) {
+      favorites.value = []
+    }
+    if (!favorites.value.includes(name)) {
+      addFavorites(name)
+      isFavorite.value = true
+    } else {
+      deleteFavorites(name)
+      isFavorite.value = false
+    }
+    console.log(isFavorite.value)
+  }
+  const checkFavorites = (name: string) => {
+    if (favorites.value.includes(name)) {
+      isFavorite.value = true
+    } else {
+      isFavorite.value = false
+    }
+  }
+  const isFavoritePokemon = (name: string) => {
+    return favorites.value.includes(name)
+  }
+  return {
+    addFavorites,
+    loadFavorites,
+    getFavorites,
+    favorites,
+    deleteFavorites,
+    toggleFavorite,
+    isFavorite,
+    checkFavorites,
+    isFavoritePokemon
+  }
 }
 
 export { useFavorites }

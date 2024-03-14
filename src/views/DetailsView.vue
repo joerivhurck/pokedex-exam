@@ -8,7 +8,7 @@ import { ref, onMounted } from 'vue'
 import Button from 'primevue/button'
 import 'primeicons/primeicons.css'
 import { useFavorites } from '@/services/favorite.service'
-const { addFavorites, deleteFavorites } = useFavorites()
+const { toggleFavorite, isFavorite, checkFavorites } = useFavorites()
 
 const { getPokemonByName } = usePokemon()
 
@@ -37,6 +37,7 @@ onMounted(async () => {
     .catch((error) => {
       console.error('error fetching pokemonbyname', error)
     })
+  checkFavorites(pokemonName.value)
 })
 </script>
 
@@ -61,10 +62,10 @@ onMounted(async () => {
           <Chip class="flex justify-center w-16" :label="typeNameSlot1" />
           <Button
             class="flex justify-start mt-6 w-32 h-10"
-            label="Toevoegen"
-            icon="pi pi-heart-fill"
+            :label="isFavorite ? 'Verwijderen' : 'Toevoegen'"
+            :icon="isFavorite ? 'pi pi-trash' : 'pi pi-heart-fill'"
             iconPos="right"
-            @click="addFavorites(pokemonName)"
+            @click="toggleFavorite(pokemonName)"
           />
         </div>
       </template>
